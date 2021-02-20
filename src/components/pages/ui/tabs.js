@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Card,Button,Tabs,message,Icon } from 'antd';
+import { Card,Tabs,message,Icon } from 'antd';
 import './ui.less';
 
 const { TabPane } = Tabs;
 export default class tabs extends Component {
+    newTabIndex=0;
+
     handleCallback = (key) =>{
         message.info("Hi,您选择了页签:"+key)
     }
@@ -27,9 +29,44 @@ export default class tabs extends Component {
             },
         ]
         this.setState({
-            panes
+            panes,
+            activeKey: panes[0].key
         })
     }
+
+    onChange = activeKey => {
+        this.setState({ activeKey });
+    };
+    
+    onEdit = (targetKey, action) => {
+        this[action](targetKey);
+    };
+    
+    add = () => {
+        const { panes } = this.state;
+        const activeKey = `newTab${this.newTabIndex++}`;
+        panes.push({ title: activeKey, content: 'Content of new Tab', key: activeKey });
+        this.setState({ panes, activeKey });
+    };
+    
+    remove = targetKey => {
+        let { activeKey } = this.state;
+        let lastIndex;
+        this.state.panes.forEach((pane, i) => {
+            if (pane.key === targetKey) {
+                lastIndex = i - 1;
+            }
+        });
+        const panes = this.state.panes.filter(pane => pane.key !== targetKey);
+        if (panes.length && activeKey === targetKey) {
+            if (lastIndex >= 0) {
+                activeKey = panes[lastIndex].key;
+            } else {
+                activeKey = panes[0].key;
+            }
+        }
+        this.setState({ panes, activeKey });
+    };
 
     render() {
         return (
@@ -62,16 +99,19 @@ export default class tabs extends Component {
                 </Card>
                 <Card title="Tab带图的页签" className="card-wrap">
                     <Tabs 
-                        defaultActiveKey="1" 
-                        onChange={this.handleCallback}
+                        onChange={this.onChange}
+                        activeKey={this.state.activeKey}
                         type="editable-card"
+                        onEdit={this.onEdit}
                     >
                         {
                             this.state.panes.map((panel)=>{
                                 return <TabPane 
                                     tab={panel.title}
                                     key={panel.key}
-                                />
+                                >
+                                    {panel.content}
+                                </TabPane>
                             })
                         }
                     </Tabs>

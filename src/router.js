@@ -8,6 +8,8 @@ import Loadings from './components/pages/ui/loadings';
 import Notices from './components/pages/ui/notice';
 import Messages from './components/pages/ui/messages';
 import Tabs from './components/pages/ui/tabs';
+import Gallery from './components/pages/ui/gallery';
+import Carousel from './components/pages/ui/carousel';
 import NoMatch from './components/pages/nomatch'
 
 export default class IRouter extends Component {
@@ -25,6 +27,8 @@ export default class IRouter extends Component {
                                     <Route path="/admin/ui/notification" component={Notices}/>
                                     <Route path="/admin/ui/messages" component={Messages}/>
                                     <Route path="/admin/ui/tabs" component={Tabs}/>
+                                    <Route path="/admin/ui/gallery" component={Gallery}/>
+                                    <Route path="/admin/ui/carousel" component={Carousel}/>
                                     <Route component={NoMatch}/>
                                 </Switch>
                             </Admin>
