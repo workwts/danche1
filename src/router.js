@@ -10,6 +10,8 @@ import Messages from './components/pages/ui/messages';
 import Tabs from './components/pages/ui/tabs';
 import Gallery from './components/pages/ui/gallery';
 import Carousel from './components/pages/ui/carousel';
+import FormLogin from './components/pages/form/login';
+import FormRegister from './components/pages/form/register';
 import NoMatch from './components/pages/nomatch'
 
 export default class IRouter extends Component {
@@ -29,6 +31,8 @@ export default class IRouter extends Component {
                                     <Route path="/admin/ui/tabs" component={Tabs}/>
                                     <Route path="/admin/ui/gallery" component={Gallery}/>
                                     <Route path="/admin/ui/carousel" component={Carousel}/>
+                                    <Route path="/admin/form/login" component={FormLogin}/>
+                                    <Route path="/admin/form/reg" component={FormRegister}/>
                                     <Route component={NoMatch}/>
                                 </Switch>
                             </Admin>
