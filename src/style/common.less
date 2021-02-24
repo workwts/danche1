@@ -1,4 +1,15 @@
 @import './loading.less';
+ul,li{
+    list-style: none;
+}
+.clearfix{
+    &::after{
+        content:'';
+        clear: both;
+        display: block;
+        visibility: hidden;
+    }
+}
 .container{
     // display: flex;
     .nav-left{
@@ -27,4 +38,10 @@
         margin-left: -1px;
         margin-right: -2px;
     }
+}
+
+.content{
+    position: relative;
+    padding:40px;
+    // background-color: aqua;
 }

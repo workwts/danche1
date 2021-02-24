@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router,Route,Switch } from 'react-router-dom';
 import App from './App';
 import Admin from './admin';
+import Common from './common';
 import Buttons from './components/pages/ui/button';
 import Modals from './components/pages/ui/modals';
 import Loadings from './components/pages/ui/loadings';
@@ -16,6 +17,7 @@ import BasicTable from './components/pages/table/basicTable';
 import HighTable from './components/pages/table/highTable';
 import City from './components/pages/city';
 import Order from './components/pages/order';
+import OrderDetail from './components/pages/order/detail';
 import NoMatch from './components/pages/nomatch'
 
 export default class IRouter extends Component {
@@ -44,6 +46,11 @@ export default class IRouter extends Component {
                                     <Route component={NoMatch}/>
                                 </Switch>
                             </Admin>
+                        }/>
+                        <Route path="/common" render={()=>
+                            <Common>
+                                <Route path="/common/order/detail/:orderId" component={OrderDetail}/>
+                            </Common>
                         }/>
                     </App>
                 </Router>
